@@ -1,11 +1,57 @@
+Dealing with the data bridge between the web interface and the core application
+the Raspberry Pi finds it way to internet of things.
+As the Raspberry Pi finds its way onto more and more workbenches,
+new opportunities arise not only to transfer data from electronic projects
+to a local network or the Internet but also to provide options for feedback and control.
+A web GUI system app is a plus to access Raspberry Pi's GPIO remotely. To control their
+operation remotely once the Raspberry is setup. 
 
-The problem occurs when your forgetting the items in the store
-and the checklist is not updated while wondering if you need to buy more water bottles.
-Better yet, your spouse calls you while your in long line
-at the grocery store to tell she already got the groceries.
-What about waking up late and rushing to work and forget to feed your dog in the morning.
-Lets say you have a hot date coming over for dinner at the last minute and you don't have
-time to rush to grocery store and you don't know what to make with the ingredients you
-already have for a nice cook meal.
+Personas
 
- 
+Erik Estrada
+
+Photo: http://www.queensu.ca/vpr/sites/webpublish.queensu.ca.vprwww/files/images/eAFFECT/stories/sparking-innovation.jpg
+Education: Electronics
+Hobbies: lego builder, Drones, inventor, Raspberry pi
+Home Owner: yes
+age: 44
+github account: yes
+family: wife, 2 dogs, 2 kids
+Tech-savvy: yes
+Income level: $80-100K
+
+Doogie Howser
+
+Photo: https://i.ytimg.com/vi/aQp5kcvS5OQ/maxresdefault.jpg
+Education: Elementary
+Hobbies: lego builder, playing video games, computers, ipad
+Home Owner: no
+age: 10
+github account: no
+family: no
+Tech-savvy: learning
+Income level: $0
+
+Jennifer Gardner
+
+Photo: https://engineeringarts.files.wordpress.com/2011/03/workbench.jpg
+Education: Engineer
+Hobbies: playing video games, programming, hiker
+Home Owner: yes
+age: 28
+github account: yes
+family: single
+Tech-savvy: yes
+Income level: $30-69k
+
+John Connor
+
+Photo: https://cdn1.vox-cdn.com/uploads/chorus_asset/file/4459013/make-benches.0.jpg
+Education: high school
+Hobbies: playing video games, coding, Martial Arts
+Home Owner: no
+age: 16
+github account: no
+family: single
+Tech-savvy: learning
+Income level: $0
