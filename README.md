@@ -61,3 +61,18 @@ operation remotely once the Raspberry is setup.
 - family: single
 - Tech-savvy: learning
 - Income level: $0
+
+# User Stories
+
+- As a dog owner, I want to check on my dogs behavior, when I'm away from home.
+
+- As a homeowner, running late to work, I would like to check to make sure I didn't forget to lock my front door.
+
+- As a homeowner, I want to know what time I receive my mail and package delivery, so I go home during lunch and pick up my mail.
+
+- As amateur gardner, I want know when is the best time to water my plants.
+
+- As a single mother, coming home at night from work, I would feel safe if can turn lights on in the house before entering it.
+
+- As a dog owner, I want find a way to feed my dog if don't come home till the next day.  
+    
