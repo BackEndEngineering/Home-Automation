@@ -1,5 +1,47 @@
 # Data model
 
+# Event
+
+- Type
+- Time/date
+- Location
+- Room Number
+- Event data
+
+# Controller
+
+- Control Number  
+- Type
+- Name
+- UUID
+
+# Room
+
+- Room Number
+- Name
+- Description
+- Device Number
+- Controller Number
+
+# Device
+
+- Device Number
+- Type
+- Room Number
+- Pin Number
+
+# Pin
+
+- Button Name
+- Pin Number
+
+
+
+
+
+
+
+
 # Raspberry Pi
 
 ## Type             
@@ -11,30 +53,48 @@
                   -  Linux (e.g. Raspbian),
                   -  RISC OS, FreeBSD, NetBSD,
                   -  Plan 9, Inferno, AROS
+                  - Windows 10 IOT Core
 
 ## CPU            
 
-                  -  700 MHz single-core ARM1176JZF-S
+                  -  4× ARM Cortex-A53, 1.2GHz
 
-## Memory	          
+## Networking
 
-                  -  256 MB[2] (model A, A+ rev 1,B rev1)
-                  -  512 MB (model A+ rev 2,[3] B rev 2, B+, CM)
+                  - 10/100 Ethernet, 2.4GHz 802.11n wireless
+
+## RAM          
+
+                  - 1GB LPDDR2 (900 MHz)
 
 ## System-on-chip used  
 
-                  -  Broadcom BCM2835
+                  -  Broadcom BCM2837
 
 ## Graphics         
 
                   -  Broadcom VideoCore IV
 
+## Bluetooth
+
+                  - Bluetooth 4.1 Classic, Bluetooth Low Energy
+
 ## Storage	         
 
-                  -  SDHC slot (model A and B), MicroSDHC
-                  -  slot (model A+ and B+), 4 GB eMMC IC
-                  -  chip (model CM)
+                  -  microSD
 
+## GPIO
+
+                  - 40-pin header, populated
+
+## Ports
+
+                  - HDMI,
+                  - 3.5mm analogue audio-video jack,
+                  - 4× USB 2.0,
+                  - Ethernet,
+                  - Camera Serial Interface (CSI),
+                  - Display Serial Interface (DSI)
 ## Power	          
 
                   -  1.5 W (model A), 1.0 W (model A+),
