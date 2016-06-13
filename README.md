@@ -1,3 +1,10 @@
+# Milestone
+  1. setting up Heroku, Django, writing code to implement to handle POST & GET to Django to test socket to raspberry pi
+  2. setting up LEDS and write a program to switch them on & off over the internet. add Notification and add Unit testing
+  3. Setting up Security, add user, logon and logon off
+  4. implement bootstrap/ add domain name and buttons and test app
+  5. polish and add a model to demonstrate how the feature works.
+
 ## Elevator pitch
 
 Dealing with the data bridge between the web interface and the core application
@@ -75,4 +82,3 @@ operation remotely once the Raspberry is setup.
 - As a single mother, coming home at night from work, I would feel safe if can turn lights on in the house before entering it.
 
 - As a dog owner, I want find a way to feed my dog if don't come home till the next day.  
-    
