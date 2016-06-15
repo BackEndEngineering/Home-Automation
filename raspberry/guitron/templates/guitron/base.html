@@ -1,0 +1,75 @@
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+<!DOCTYPE html>
+<html lange="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=2">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="{% static 'guitron/styles/guitron.css' %}"/>
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+  <title>{% block title %}News{% endblock %}</title>
+
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand" href="#">GuiTron</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+
+          <li><a href="{% url 'guitron:guitron' %}">Lights</a></li>
+          <li><a href="">GPIO</a></li>
+          <li><a href="">Monitor</a></li>
+          <li><a href="">Profile</a></li>
+{% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+{% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+{% endif %}
+          </ul>
+
+      </div>
+    </div>
+  </nav>
+<div class="starter-template">
+  {% if user.is_authenticated %}
+      <p>Greetings, {{ user.first_name }}!<p>
+      {% endif %}
+
+    <div class="container">
+
+
+
+      {% block content %}
+        <h2>Title</h2>
+        <p>para 1</p>
+        <p>para 2</p>
+      {% endblock %}
+
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+{% extends 'guitron/base.html' %}
+{% block title %}guitron{% endblock %}
+{% block content %}
+{% load staticfiles %}
+<article>
+
+    <h3 class='text-success'>Event id</h3>
+      <p class="text-primary">{{ monitor.event_id}}</p>
+
+</article>
+
+{% if 'guitron.change_description' in perms %}
+<p><a href="{% url 'guitron:index' %}" class="btn btn-primary btn-sm active" role="button">Back to List</a></p>
+{% endif %}
+{% endblock %}

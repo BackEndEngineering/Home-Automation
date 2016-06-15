@@ -1,0 +1,22 @@
+{% extends 'guitron/base.html' %}
+
+{% block title %}Characters{% endblock %}
+
+{% block content %}
+
+{% if recent_monitors %}
+<h1 class='text-warning'>SUPERHEROES</h1>
+<ul style="list-style-type:none">
+    {% for monitor in recent_monitors %}
+
+      </li>
+        <li>
+          <a href="{% url 'guitron:details' guitron.id %}">
+
+          {{ monitor }}
+        </a>
+      </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
