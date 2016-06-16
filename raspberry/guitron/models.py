@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from dateutil.relativedelta import relativedelta
+from django import forms
 
 class Monitor(models.Model):
     event_id = models.CharField(max_length=256)
@@ -16,10 +17,14 @@ class Area(models.Model):
     def __str__(self):
         return str(self.name)
 
+class Controller(models.Model):
+    gadget_id = models.CharField(max_length=256)
+    ip_address = models.CharField(max_length=256)
+
+
 class Gadget(models.Model):
     gadget_id = models.CharField(max_length=256)
     ip_address = models.CharField(max_length=256)
-    monitor = models.ForeignKey(Monitor, null=False, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.gadget_id)
@@ -60,3 +65,11 @@ class Install(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+class GadgetForm(forms.Form):
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)
+    sender = forms.EmailField()
+
+    def __str__(self):
+        return str(self.subject)

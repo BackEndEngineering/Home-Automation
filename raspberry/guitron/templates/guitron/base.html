@@ -38,7 +38,7 @@
         <ul class="nav navbar-nav">
           <li class="active"><a href="#">Home</a></li>
 
-          <li><a href="{% url 'guitron:guitron' %}">Lights</a></li>
+          <li><a href="{% url 'guitron:index' %}">Lights</a></li>
           <li><a href="">GPIO</a></li>
           <li><a href="">Monitor</a></li>
           <li><a href="">Profile</a></li>
@@ -54,7 +54,7 @@
   </nav>
 <div class="starter-template">
   {% if user.is_authenticated %}
-      <p>Greetings, {{ user.first_name }}!<p>
+      <p>{{ user.first_name }}<p>
       {% endif %}
 
     <div class="container">

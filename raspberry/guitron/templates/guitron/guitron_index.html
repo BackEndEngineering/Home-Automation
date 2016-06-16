@@ -1,22 +1,53 @@
 {% extends 'guitron/base.html' %}
 
-{% block title %}Characters{% endblock %}
+{% block title %}Raspberry Pi{% endblock %}
 
 {% block content %}
 
-{% if recent_monitors %}
-<h1 class='text-warning'>SUPERHEROES</h1>
-<ul style="list-style-type:none">
-    {% for monitor in recent_monitors %}
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+    <span class="glyphicon glyphicon-plus"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="{% url 'guitron:create' %}">Gadget</a></li>
+    <li><a href="#">Switch</a></li>
+    <li><a href="#">Area</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+
+
+
+{% if recent_gadgets %}
+
+<h1 class='text-warning'>Gadget</h1>
+<ul class = "list-unstyled">
+
+    {% for gadget in recent_gadgets %}
+
+
+
 
       </li>
-        <li>
-          <a href="{% url 'guitron:details' guitron.id %}">
+      <ul class="list-group">
+        <li class="list-group-item">
 
-          {{ monitor }}
+          <a href="{% url 'guitron:view' gadget.id %}">
+          {{ gadget }}
         </a>
+
+
       </li>
     {% endfor %}
     </ul>
+
+</div>
+    <button type="button" onclick="alert('Hello world!')">Click Me!</button>
+
+
+
 {% endif %}
 {% endblock %}
