@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from dateutil.relativedelta import relativedelta
 from django import forms
+from datetime import date
 
 class Monitor(models.Model):
     event_id = models.CharField(max_length=256)
@@ -18,9 +19,30 @@ class Area(models.Model):
         return str(self.name)
 
 class Controller(models.Model):
-    gadget_id = models.CharField(max_length=256)
-    ip_address = models.CharField(max_length=256)
+    name = models.CharField(max_length=50)
+    location = models.CharField(max_length=50)
+    user = models.CharField(max_length=50)
 
+    def __str__(self):
+        return str(self.id)
+
+class Componet(models.Model):
+    name = models.CharField(max_length=50)
+    area = models.CharField(max_length=50)
+    kind = models.CharField(max_length=50)
+    controller = models.ForeignKey(Controller, models.SET_NULL, null=True)
+    pin = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return str(self.id)
+
+class Event(models.Model):
+    componet = models.ForeignKey(Componet, models.SET_NULL, null=True)
+    time = models.DateField(auto_now_add=True, db_index=True)
+    value = models.CharField(max_length=10)
+
+    def __str__(self):
+        return str(self.id)
 
 class Gadget(models.Model):
     gadget_id = models.CharField(max_length=256)
@@ -51,7 +73,6 @@ class Switch(models.Model):
     def __str__(self):
         return str(self.name)
 
-
 class Install(models.Model):
     name = models.CharField(max_length=128)
     customer = models.CharField(max_length=128)
@@ -61,7 +82,6 @@ class Install(models.Model):
     @property
     def age(self):
         return relativedelta(date.today(), self.install_date)
-
 
     def __str__(self):
         return str(self.name)
@@ -73,3 +93,9 @@ class GadgetForm(forms.Form):
 
     def __str__(self):
         return str(self.subject)
+
+class Image(models.Model):
+    name = models.CharField(max_length=128)
+    image = models.ImageField(null=True, blank=True,
+            width_field="width_field",
+            height_field="height_field")
