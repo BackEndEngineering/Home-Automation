@@ -20,10 +20,15 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers
-from guitron.api import UserViewSet
+from guitron.api import UserViewSet, ControllerViewSet
+from guitron import views
 
 router = routers.DefaultRouter()
-
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
+router.register(r'Controller', views.ControllerViewSet)
+router.register(r'Event', views.EventViewSet)
+router.register(r'Componet', views.ComponetViewSet)
 
 urlpatterns = [
      url(r'^', include('django.contrib.auth.urls')),

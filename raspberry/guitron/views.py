@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Gadget
+from .models import Gadget, Controller, Event, Componet
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
@@ -7,6 +7,9 @@ from .utils import calculate_age
 from .forms import GadgetForm
 from django.http import HttpResponseRedirect
 from .forms import GadgetForm
+from rest_framework import viewsets
+from django.contrib.auth.models import User, Group
+from guitron.api import UserSerializer, GroupSerializer, ControllerSerializer, EventSerializer, ComponetSerializer
 
 def index(request):
     recent_gadgets = Gadget.objects.all()
@@ -75,3 +78,60 @@ def view_componet(request, componet_id):
     controller = get_object_or_404(Componet, id=controller_id)
     context = { 'controller': controller }
     return render(request, 'guitron/componet_details.html', context)
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+
+class ControllerViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Controller.objects.all().order_by('-date_joined')
+    serializer_class = ControllerSerializer
+
+class EventViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Event.objects.all().order_by('-date_joined')
+    serializer_class = EventSerializer
+
+class ComponetViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Componet.objects.all().order_by('-date_joined')
+    serializer_class = ComponetSerializer
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+
+class ControllerViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Controller.objects.all()
+    serializer_class = ControllerSerializer
+
+class EventViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+
+class ComponetViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Componet.objects.all()
+    serializer_class = ComponetSerializer
