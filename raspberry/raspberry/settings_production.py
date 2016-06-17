@@ -4,7 +4,7 @@ import dj_database_url
 #DEBUG = False
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 DEBUG = False
-SECRET_KEY = os.environ.get('5e4m7*w9nmzz2kcr)o+*-b6@%t0(km_7lq#38&0*^)#s)*x3s*')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
