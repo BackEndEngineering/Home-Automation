@@ -3,6 +3,16 @@ from django.contrib.auth.models import User
 from dateutil.relativedelta import relativedelta
 from django import forms
 from datetime import date
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+import uuid
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
 
 class Monitor(models.Model):
     event_id = models.CharField(max_length=256)
@@ -22,7 +32,7 @@ class Controller(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     user = models.CharField(max_length=50)
-    #uuid = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    uuid = models.UUIDField(primary_key=False, default=uuid.uuid4, editable=False)
 
     def __str__(self):
         return str(self.id)
