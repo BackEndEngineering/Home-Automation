@@ -17,7 +17,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class ControllerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Controller
-        fields = ('name', 'location', 'user')
+        fields = ('name', 'location', 'user', 'uuid')
 
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
