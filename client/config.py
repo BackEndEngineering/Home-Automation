@@ -1,3 +1,3 @@
 
 CONFIG = {'name': '5', 'user': 'superman', 'location': '16 Crestborn bedroom 10'}
-TOKEN = 'cb7431488e267a9283732ac9e867c4aac9eb8b40'
+TOKEN = '11a1c9d5680a9f73e3ce8c0094a44c47b7dbe01d'
