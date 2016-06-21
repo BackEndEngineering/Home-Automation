@@ -10,6 +10,7 @@ from .forms import GadgetForm
 from rest_framework import viewsets
 from django.contrib.auth.models import User, Group
 from guitron.api import UserSerializer, GroupSerializer, ControllerSerializer, EventSerializer, ComponetSerializer
+from django.http import JsonResponse
 
 def index(request):
     recent_gadgets = Gadget.objects.all()
@@ -135,3 +136,24 @@ class ComponetViewSet(viewsets.ModelViewSet):
     """
     queryset = Componet.objects.all()
     serializer_class = ComponetSerializer
+
+def add_event(request):
+    event_data = None
+    if request.method == 'POST':
+        event_data = json.loads(request.body)
+    else:
+        return
+
+    recent_event = Controller.objects.get(uuid)
+    comps = Component.objects.filter(
+            controller = count,
+            pin = pin)
+    if not comps:
+        comps = Componet.objects.create(
+                name = fromJson
+                area = fromJson
+                kind = fromJson
+                controller = fromJson
+                pin = fromJson
+        )
+         return result successful
