@@ -1,13 +1,16 @@
 import RPi.GPIO as GPIO
 import time
 
-lights = int(input( 'Turn Lights on? '))
+lights = input( 'Turn Lights ON or OFF? '))
+if lights == "yes":
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(18,GPIO.OUT)
-print("LED on")
-GPIO.output(18,GPIO.HIGH)
-#time.sleep(1)
-#print("LED off")
-#GPIO.output(18,GPIO.LOW)
+GPIO.setup(18, 1)
+blink = GPIO.PWM(18, 1)
+try:
+    blink.start(50)
+    while True:
+        pass
+except KeyboardInterrupt:
+    blink.stop()
+GPIO.cleanup()
