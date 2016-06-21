@@ -32,7 +32,7 @@ class Controller(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     user = models.CharField(max_length=50)
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    uuid = models.UUIDField(unique=True, null=False, default=uuid.uuid4, editable=False)
 
     def __str__(self):
         return str(self.id)
