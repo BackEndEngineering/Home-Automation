@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Gadget, Controller, Event, Componet
+from .models import Gadget, Controller, Event, Component
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
@@ -11,6 +11,8 @@ from rest_framework import viewsets
 from django.contrib.auth.models import User, Group
 from guitron.api import UserSerializer, GroupSerializer, ControllerSerializer, EventSerializer, ComponetSerializer
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 def index(request):
     recent_gadgets = Gadget.objects.all()
@@ -70,15 +72,15 @@ def view_event(request, event_id):
     context = { 'event': event}
     return render(request, 'guitron/event_details.html', context)
 
-def index_componet(request):
-    recent_componets = Componet.objects.all()
-    context = {'componets': recent_componets}
-    return render(request, 'guitron/componet_index.html', context)
+def index_component(request):
+    recent_components = Component.objects.all()
+    context = {'components': recent_components}
+    return render(request, 'guitron/component_index.html', context)
 
-def view_componet(request, componet_id):
+def view_component(request, component_id):
     controller = get_object_or_404(Componet, id=controller_id)
     context = { 'controller': controller }
-    return render(request, 'guitron/componet_details.html', context)
+    return render(request, 'guitron/component_details.html', context)
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -101,7 +103,7 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all().order_by('-date_joined')
     serializer_class = EventSerializer
 
-class ComponetViewSet(viewsets.ModelViewSet):
+class ComponentViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
@@ -130,30 +132,57 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
-class ComponetViewSet(viewsets.ModelViewSet):
+class ComponentViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
-    queryset = Componet.objects.all()
+    queryset = Component.objects.all()
     serializer_class = ComponetSerializer
 
-def add_event(request):
+@csrf_exempt
+def create_event(request):
     event_data = None
     if request.method == 'POST':
-        event_data = json.loads(request.body)
+        event_data = json.loads(str(request.body.decode('utf-8')))
+        # event_data = {
+        #             'uuid': '1',
+        #             'name':'Master Bedroom ',
+        #             'area': 'Bedroom 1',
+        #             'kind': 'fan',
+        #             'pin': '1',
+        #             'value': 'on'
+        #             }
     else:
-        return
+        return event_data
 
-    recent_event = Controller.objects.get(uuid)
+    controller = Controller.objects.get(uuid=event_data['uuid'])
     comps = Component.objects.filter(
-            controller = count,
-            pin = pin)
-    if not comps:
-        comps = Componet.objects.create(
-                name = fromJson
-                area = fromJson
-                kind = fromJson
-                controller = fromJson
-                pin = fromJson
+            controller = controller,
+            pin = int(event_data['pin']))
+
+    component = None
+    if comps:
+        component = comps[0]
+    else:
+        component = Component.objects.create(
+            controller = controller,
+            pin = int(event_data['pin']),
+            name = event_data['name'],
+            area = event_data['area'],
+            kind = event_data['kind']
         )
-         return result successful
+
+    event = Event.objects.create(
+        component = component,
+        value = event_data['value']
+        )
+    # event = None
+    # if eves:
+    #     event = eves[0]
+    # else:
+    #     event = Event.object.create(
+    #         componet = componet,
+    #         value = event_data['value']
+    #     )
+    # )
+    return JsonResponse({'event': event.id})

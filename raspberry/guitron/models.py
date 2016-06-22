@@ -37,7 +37,7 @@ class Controller(models.Model):
     def __str__(self):
         return str(self.id)
 
-class Componet(models.Model):
+class Component(models.Model):
     name = models.CharField(max_length=50)
     area = models.CharField(max_length=50)
     kind = models.CharField(max_length=50)
@@ -48,7 +48,7 @@ class Componet(models.Model):
         return str(self.id)
 
 class Event(models.Model):
-    componet = models.ForeignKey(Componet, models.SET_NULL, null=True)
+    component = models.ForeignKey(Componet, models.SET_NULL, null=True)
     time = models.DateField(auto_now_add=True, db_index=True)
     value = models.CharField(max_length=10)
 

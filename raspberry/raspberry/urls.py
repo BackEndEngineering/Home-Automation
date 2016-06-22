@@ -28,7 +28,7 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'Controller', views.ControllerViewSet)
 router.register(r'Event', views.EventViewSet)
-router.register(r'Componet', views.ComponetViewSet)
+router.register(r'Component', views.ComponentViewSet)
 
 urlpatterns = [
      url(r'^', include('django.contrib.auth.urls')),

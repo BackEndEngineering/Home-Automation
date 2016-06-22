@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers, viewsets
-from .models import Controller, Componet, Event
+from .models import Controller, Component, Event
 
 
 # Serializers define the API representation.
@@ -22,11 +22,11 @@ class ControllerSerializer(serializers.HyperlinkedModelSerializer):
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event
-        fields = ('componet', 'time', 'value')
+        fields = ('component', 'time', 'value')
 
-class ComponetSerializer(serializers.HyperlinkedModelSerializer):
+class ComponentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Componet
+        model = Component
         fields = ('name', 'area', 'kind', 'controller', 'pin')
 
 
@@ -43,6 +43,6 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
-class ComponetViewSet(viewsets.ModelViewSet):
-    queryset = Componet.objects.all()
-    serializer_class = ComponetSerializer
+class ComponentViewSet(viewsets.ModelViewSet):
+    queryset = Component.objects.all()
+    serializer_class = ComponentSerializer

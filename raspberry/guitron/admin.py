@@ -1,10 +1,12 @@
 from django.contrib import admin
-from .models import Install, Area, Pin, Switch, Gadget, Monitor, Controller, Componet, Event, Image
+from .models import Install, Area, Pin, Switch, Gadget, Monitor, Controller, Component, Event, Image
 
+class ControllerAdmin(admin.ModelAdmin):
+    readonly_fields = ('uuid',)
 
 admin.site.register(Monitor)
-admin.site.register(Controller)
-admin.site.register(Componet)
+admin.site.register(Controller, ControllerAdmin)
+admin.site.register(Component)
 admin.site.register(Event)
 admin.site.register(Image)
 admin.site.register(Gadget)
