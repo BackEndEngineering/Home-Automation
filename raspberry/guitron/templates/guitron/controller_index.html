@@ -1,0 +1,25 @@
+{% extends "guitron/base.html" %}
+
+{% block title %}Cool Title for My App{% endblock %}
+
+{% block content %}
+
+
+
+
+{% if recent_controllers %}
+<h1 class='text-warning'>Controllers</h1>
+<ul style="list-style-type:none">
+    {% for controller in recent_controllers %}
+
+      </li>
+        <li>
+          <a href="{% url 'guitron:controllers' controller.id %}">
+
+          {{ controller }}
+        </a>
+      </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

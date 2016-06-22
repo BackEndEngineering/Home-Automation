@@ -57,10 +57,11 @@ def index_controller(request):
     context = {'recent_controllers': recent_controllers}
     return render(request, 'guitron/controller_index.html', context)
 
-def view_controller(request, guitron_id):
+def view_controller(request, controller_id):
     controller = get_object_or_404(Controller, id=controller_id)
     context = { 'controller': controller }
     return render(request, 'guitron/controller_details.html', context)
+
 
 def index_event(request):
     recent_events = Event.objects.all()

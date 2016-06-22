@@ -8,7 +8,7 @@
       <p class="text-primary">{{ gadget.ip_address }}</p>
 
 </article>
-<p><a href="{% url 'guitron:index' %}" class="btn btn-primary btn-sm active" role="button">Back to List</a></p>
+<p><a href="{% url 'guitron:create_event' %}" class="btn btn-primary btn-sm active" role="button">Back to List</a></p>
 {% if 'guitron' in perms %}
 {% endif %}
 {% endblock %}
