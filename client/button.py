@@ -38,7 +38,7 @@ while True:
                         'value': 'on'
                         }
 
-        response = requests.post('http://guitron.herokuapp.com/' + 'guitron/create/', json=event_data, headers=headers)
+        response = requests.post('http://guitron.herokuapp.com/' + 'guitron/create_event/', json=event_data, headers=headers)
         print(response.status_code)
 # Get URL, token, and uuid
 #  URL: from config import BASE_URL
