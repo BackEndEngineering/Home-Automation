@@ -185,4 +185,4 @@ def create_event(request):
     #         value = event_data['value']
     #     )
     # )
-    return JsonResponse({'event': event.id})
+    return JsonResponse({'create_event': event.id})

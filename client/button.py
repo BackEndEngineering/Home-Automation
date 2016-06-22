@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 from config import TOKEN, BASE_URL
+import requests
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(25, GPIO.IN)
