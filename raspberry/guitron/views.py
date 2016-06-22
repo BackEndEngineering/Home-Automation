@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 from .forms import GadgetForm
 from rest_framework import viewsets
 from django.contrib.auth.models import User, Group
-from guitron.api import UserSerializer, GroupSerializer, ControllerSerializer, EventSerializer, ComponetSerializer
+from guitron.api import UserSerializer, GroupSerializer, ControllerSerializer, EventSerializer, ComponentSerializer
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -78,7 +78,7 @@ def index_component(request):
     return render(request, 'guitron/component_index.html', context)
 
 def view_component(request, component_id):
-    controller = get_object_or_404(Componet, id=controller_id)
+    controller = get_object_or_404(Component, id=controller_id)
     context = { 'controller': controller }
     return render(request, 'guitron/component_details.html', context)
 
@@ -107,8 +107,8 @@ class ComponentViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Componet.objects.all().order_by('-date_joined')
-    serializer_class = ComponetSerializer
+    queryset = Component.objects.all().order_by('-date_joined')
+    serializer_class = ComponentSerializer
 
 
 class GroupViewSet(viewsets.ModelViewSet):
@@ -137,7 +137,7 @@ class ComponentViewSet(viewsets.ModelViewSet):
     API endpoint that allows groups to be viewed or edited.
     """
     queryset = Component.objects.all()
-    serializer_class = ComponetSerializer
+    serializer_class = ComponentSerializer
 
 @csrf_exempt
 def create_event(request):

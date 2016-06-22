@@ -48,7 +48,7 @@ class Component(models.Model):
         return str(self.id)
 
 class Event(models.Model):
-    component = models.ForeignKey(Componet, models.SET_NULL, null=True)
+    component = models.ForeignKey(Component, models.SET_NULL, null=True)
     time = models.DateField(auto_now_add=True, db_index=True)
     value = models.CharField(max_length=10)
 
