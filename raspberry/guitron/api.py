@@ -5,8 +5,8 @@ from .models import Controller, Component, Event, Action
 
 class ActionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
-        fields = ('value', 'time', 'completed')
+        model = Action
+        fields = ('value', 'time', 'completed', 'component')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

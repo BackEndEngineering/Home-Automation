@@ -52,7 +52,7 @@ while True:
     actions = response.json()["actions"]
 
     for action in actions:
-        lights = input( 'Turn Lights ON or OFF? ')
+        print(action)
         if lights == "ON":
 
             GPIO.setmode(GPIO.BCM)
