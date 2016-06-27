@@ -1,0 +1,17 @@
+
+{% extends 'guitron/base.html' %}
+
+{% block title %}Lights{% endblock %}
+
+{% block content %}
+<form action="{% url 'guitron:light' %}" method="post">
+    {% csrf_token %}
+
+    <button type="submit" style="width: 300px; padding: 20px; box-shaddow: 6px 6px 5px; #007399; -webkit-box-shadow: 6px 6px 5px #007399; -moz-box-shadow: 6px 6px 5px #007399; font-weight: bold; background: #0000ff; color: #000000; cursor: pointer; border-radius: 10px; border: 1px solid #D9D9D9; font-size: 150%;" type="button" value="ON" name="ON">
+      ON</button>
+
+      <button type="submit" style="width: 300px; padding: 20px; box-shaddow: 6px 6px 5px; #007399; -webkit-box-shadow: 6px 6px 5px #007399; -moz-box-shadow: 6px 6px 5px #007399; font-weight: bold; background: #0000ff; color: #000000; cursor: pointer; border-radius: 10px; border: 1px solid #D9D9D9; font-size: 150%;" type="button" value="OFF" name="OFF">
+        OFF</button>
+
+</form>
+{% endblock %}

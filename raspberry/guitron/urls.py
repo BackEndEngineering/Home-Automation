@@ -4,7 +4,7 @@ from . import views
 
 app_name = 'guitron'
 urlpatterns = [
-
+    url(r'^light/$', views.action_form, name='light'),
     url(r'^get_action/$', views.get_action, name='get_action'),
     url(r'^component/$', views.index_component, name="component"),
     url(r'^component/(?P<component_id>[0-9]+)/$', views.view_component, name='component'),

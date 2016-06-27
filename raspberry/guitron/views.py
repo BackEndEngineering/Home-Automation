@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
 from .utils import calculate_age
-from .forms import GadgetForm
+from .forms import GadgetForm, ActionForm
 from django.http import HttpResponseRedirect
 from .forms import GadgetForm
 from rest_framework import viewsets
@@ -20,6 +20,27 @@ def get_action(request):
         action.completed=True
     serializer = ActionSerializer(actions, many=True, context={'request': request})
     return JsonResponse({'actions': serializer.data})
+
+def action_form(request):
+    if request.method == 'POST':
+        component = Component.objects.get(id=1)
+        if 'ON' in request.POST:
+            Action.objects.create(
+                component = component,
+                value = 'ON',
+                completed = False)
+        elif 'OFF' in request.POST:
+            Action.objects.create(
+                component = component,
+                value = 'OFF',
+                completed = False)
+
+
+
+    context = {}
+    return render(request, 'guitron/lights.html', context)
+
+
 
 def dashboard(request):
     recent_controllers = Controller.objects.all()
