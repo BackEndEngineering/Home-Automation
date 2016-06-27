@@ -18,7 +18,8 @@ def get_action(request):
     actions = Action.objects.filter(completed=False)
     for action in actions:
         action.completed=True
-    return JsonResponse({'actions': actions})
+    serializer = ActionSerializer(actions, many=True)
+    return JsonResponse({'actions': serializer.data})
 
 def dashboard(request):
     recent_controllers = Controller.objects.all()
