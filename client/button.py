@@ -24,12 +24,13 @@ headers = {'Authorization': 'Token '+ TOKEN}
 
 last_state = None
 
-while True:
-    # handle_events()
+
+
+def handle_events():
 
     current_state = GPIO.input(25)
     if current_state == last_state:
-        continue
+        return
 
     if current_state == GPIO.LOW:
         print("Turn ON")
@@ -48,7 +49,10 @@ while True:
 
     else:
         print("Turn OFF")
+    last_state = current_state
 
+while True:
+    handle_events()
     response = requests.get('http://guitron.herokuapp.com/' + 'guitron/get_action/', headers=headers)
     print(response.status_code)
 
@@ -67,4 +71,4 @@ while True:
             GPIO.output(13, GPIO.LOW)
 
         time.sleep( 5 )
-        last_state = current_state
+    

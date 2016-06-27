@@ -18,6 +18,7 @@ def get_action(request):
     actions = Action.objects.filter(completed=False)
     for action in actions:
         action.completed=True
+        action.save()
     serializer = ActionSerializer(actions, many=True, context={'request': request})
     return JsonResponse({'actions': serializer.data})
 
