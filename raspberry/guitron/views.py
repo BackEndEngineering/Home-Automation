@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 from .forms import GadgetForm
 from rest_framework import viewsets
 from django.contrib.auth.models import User, Group
-from guitron.api import UserSerializer, GroupSerializer, ControllerSerializer, EventSerializer, ComponentSerializer
+from guitron.api import UserSerializer, GroupSerializer, ControllerSerializer, EventSerializer, ComponentSerializer, ActionSerializer
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -101,6 +101,14 @@ def view_image(request, image_id):
     response = FileResponse(open(image.image.url, 'rb'), content_type='image/' + image_type)
     context = { 'image': image }
     return render(request, 'guitron/image_details.html', context)
+
+class ActionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Action.objects.all()
+    serializer_class = ActionSerializer
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """

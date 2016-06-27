@@ -1,9 +1,13 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers, viewsets
-from .models import Controller, Component, Event
+from .models import Controller, Component, Event, Action
 
 
-# Serializers define the API representation.
+class ActionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('value', 'time', 'completed')
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
@@ -31,6 +35,10 @@ class ComponentSerializer(serializers.HyperlinkedModelSerializer):
 
 
 # ViewSets define the view behavior.
+class ActionViewSet(viewsets.ModelViewSet):
+    queryset = Action.objects.all()
+    serializer_class = ActionSerializer
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
