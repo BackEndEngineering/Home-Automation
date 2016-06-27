@@ -68,7 +68,7 @@ while True:
             GPIO.output(13, GPIO.HIGH)
 
         if action['value'] == 'OFF':
+            GPIO.setup(13, GPIO.OUT)
             GPIO.output(13, GPIO.LOW)
 
         time.sleep( 5 )
-    
