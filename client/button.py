@@ -55,13 +55,15 @@ while True:
 
     for action in actions:
         print(action)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(13, GPIO.IN)
         lights = None
         current_state = GPIO.input(13)
         current_state = lights
 
         if lights == GPIO.LOW:
 
-            GPIO.setmode(GPIO.BCM)
+        #    GPIO.setmode(GPIO.BCM)
             GPIO.setup(13, GPIO.OUT)
             GPIO.output(13, GPIO.HIGH)
             print('Lights are Turn ON')
@@ -75,7 +77,7 @@ while True:
                         }
 
         if lights == GPIO.HIGH:
-            GPIO.setmode(GPIO.BCM)
+#            GPIO.setmode(GPIO.BCM)
             GPIO.setup(13, GPIO.OUT)
             GPIO.output(13, GPIO.LOW)
             GPIO.cleanup()
