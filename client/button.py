@@ -6,6 +6,8 @@ import time
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(25, GPIO.IN)
 GPIO.setup(18, GPIO.OUT)
+GPIO.setup(13, GPIO.OUT)
+GPIO.output(13, GPIO.HIGH)
 
 
 URL = BASE_URL
@@ -60,9 +62,9 @@ while True:
 
         if lights == GPIO.LOW:
 
-            GPIO.setmode(GPIO.BCM)
-            GPIO.setup(13, GPIO.OUT)
-            GPIO.output(13, GPIO.HIGH)
+    #        GPIO.setmode(GPIO.BCM)
+    #        GPIO.setup(13, GPIO.OUT)
+    #        GPIO.output(13, GPIO.HIGH)
             print('Lights are Turn ON')
 
             action = {
