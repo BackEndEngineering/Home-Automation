@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Gadget, Controller, Event, Component
+from .models import Gadget, Controller, Event, Component, Action
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
@@ -13,6 +13,19 @@ from guitron.api import UserSerializer, GroupSerializer, ControllerSerializer, E
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+
+def get_action(request):
+    action = Action.object.filter(completed=False)
+    for action in actions:
+        action.completed=True    
+    return JsonResponse({'actions': actions})
+
+def dashboard(request):
+    recent_controllers = Controller.objects.all()
+    recent_events = Event.objects.order_by('-time')[0:5]
+    context = {'recent_controllers': recent_controllers, 'recent_events': recent_events}
+    return render(request, 'guitron/dashboard.html', context)
+
 
 def index(request):
     recent_gadgets = Gadget.objects.all()
@@ -75,13 +88,19 @@ def view_event(request, event_id):
 
 def index_component(request):
     recent_components = Component.objects.all()
-    context = {'components': recent_components}
+    context = {'recent_components': recent_components}
     return render(request, 'guitron/component_index.html', context)
 
 def view_component(request, component_id):
-    controller = get_object_or_404(Component, id=controller_id)
-    context = { 'controller': controller }
+    component = get_object_or_404(Component, id=component_id)
+    context = { 'component': component }
     return render(request, 'guitron/component_details.html', context)
+
+def view_image(request, image_id):
+    image = get_object_or_404(Image, id=image_id)
+    response = FileResponse(open(image.image.url, 'rb'), content_type='image/' + image_type)
+    context = { 'image': image }
+    return render(request, 'guitron/image_details.html', context)
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -145,14 +164,7 @@ def create_event(request):
     event_data = None
     if request.method == 'POST':
         event_data = json.loads(str(request.body.decode('utf-8')))
-        # event_data = {
-        #             'uuid': '1',
-        #             'name':'Master Bedroom ',
-        #             'area': 'Bedroom 1',
-        #             'kind': 'fan',
-        #             'pin': '1',
-        #             'value': 'on'
-        #             }
+
     else:
         return event_data
 
@@ -177,13 +189,5 @@ def create_event(request):
         component = component,
         value = event_data['value']
         )
-    # event = None
-    # if eves:
-    #     event = eves[0]
-    # else:
-    #     event = Event.object.create(
-    #         componet = componet,
-    #         value = event_data['value']
-    #     )
-    # )
+
     return JsonResponse({'create_event': event.id})

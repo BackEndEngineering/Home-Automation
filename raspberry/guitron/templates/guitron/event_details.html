@@ -1,8 +1,31 @@
 {% extends 'guitron/base.html' %}
-{% block title %}Characters{% endblock %}
+{% block title %}guitron{% endblock %}
 {% block content %}
 {% load staticfiles %}
+<article>
 
-<h3 class='text-success'>Weight</h3>
-      <p class="text-primary">{{ event }}</p>
-</dt>
+
+  <ul class="list-group">
+
+    <h3 class='text-success'>RASPBERRY PI</h3>
+    <li class="list-group-item"><h4 class="list-group-item-heading">Name</h4>{{ event.component.name }}</li>
+    <li class="list-group-item"><h4 class="list-group-item-heading">Area</h4>{{ event.component.area }}</li>
+    <li class="list-group-item"><h4 class="list-group-item-heading">Type</h4>{{ event.component.kind }}</li>
+    <li class="list-group-item"><h4 class="list-group-item-heading">Raspberry</h4>{{ event.component.controller }}</li>
+    <li class="list-group-item"><h4 class="list-group-item-heading">Name</h4>{{ event.component.controller.name }}</li>
+    <li class="list-group-item"><h4 class="list-group-item-heading">Location</h4>{{ event.component.controller.location }}</li>
+    <li class="list-group-item"><h4 class="list-group-item-heading">User</h4>{{ event.component.controller.user }}</li>
+    <li class="list-group-item"><h4 class="list-group-item-heading">Uuid</h4>{{ event.component.controller.uuid }}</li>
+    <li class="list-group-item"><h4 class="list-group-item-heading">Pin Number</h4>{{ event.component.pin }}</li>
+    <li class="list-group-item"><h4 class="list-group-item-heading">Date/Time</h4>{{ event.time}}</li>
+    <li class="list-group-item"><h4 class="list-group-item-heading">Switch ON/OFF</h4>{{ event.value}}</li>
+
+  </ul>
+
+  
+
+</article>
+<p><a href="{% url 'guitron:events' %}" class="btn btn-primary btn-sm active" role="button">Back to List</a></p>
+{% if 'guitron' in perms %}
+{% endif %}
+{% endblock %}

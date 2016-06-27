@@ -1,0 +1,22 @@
+{% extends "guitron/base.html" %}
+
+{% block title %}Cool Title for My App{% endblock %}
+
+{% block content %}
+
+{% if recent_components %}
+<h1 class='text-warning'>Component</h1>
+<ul style="list-style-type:none">
+    {% for component in recent_components %}
+
+          </li>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <a href="{% url 'guitron:component' component.id  %}">
+              {{ component }}
+            </a>
+          </li>
+
+        {% endfor %}
+{% endif %}
+{% endblock %}

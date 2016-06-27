@@ -1,1 +1,17 @@
-hoi
+{% extends 'guitron/base.html' %}
+{% block title %}guitron{% endblock %}
+{% block content %}
+{% load staticfiles %}
+<article>
+
+    <h3 class='text-success'>Raspberry Pi</h3>
+      <p class="text-primary">{{ controller.name }}</p>
+      <p class="text-primary">{{ controller.location }}</p>
+      <p class="text-primary">{{ controller.user }}</p>
+        <p class="text-primary">{{ controller.uuid }}</p>
+
+</article>
+<p><a href="{% url 'guitron:controllers' %}" class="btn btn-primary btn-sm active" role="button">Back to List</a></p>
+{% if 'guitron' in perms %}
+{% endif %}
+{% endblock %}

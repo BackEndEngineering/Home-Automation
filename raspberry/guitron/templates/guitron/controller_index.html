@@ -8,18 +8,24 @@
 
 
 {% if recent_controllers %}
+
 <h1 class='text-warning'>Controllers</h1>
 <ul style="list-style-type:none">
     {% for controller in recent_controllers %}
 
-      </li>
-        <li>
-          <a href="{% url 'guitron:controllers' controller.id %}">
+          </li>
+          <ul class="list-group">
+            <li class="list-group-item">
 
-          {{ controller }}
-        </a>
-      </li>
-    {% endfor %}
-    </ul>
+              <a href="{% url 'guitron:controllers' controller.id  %}">
+              {{ controller }}</a>
+            </li>
+
+            
+
+
+
+
+        {% endfor %}
 {% endif %}
 {% endblock %}

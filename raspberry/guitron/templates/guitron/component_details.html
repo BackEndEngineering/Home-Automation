@@ -1,0 +1,18 @@
+{% extends 'guitron/base.html' %}
+{% block title %}guitron{% endblock %}
+{% block content %}
+{% load staticfiles %}
+<article>
+
+    <h3 class='text-success'>Raspberry Pi</h3>
+      <p class="text-primary">{{ component.name }}</p>
+      <p class="text-primary">{{ component.area}}</p>
+      <p class="text-primary">{{ component.kind }}</p>
+      <p class="text-primary">{{ component.controller }}</p>
+      <p class="text-primary">{{ component.pin }}</p>
+
+</article>
+<p><a href="{% url 'guitron:component' %}" class="btn btn-primary btn-sm active" role="button">Back to List</a></p>
+{% if 'guitron' in perms %}
+{% endif %}
+{% endblock %}

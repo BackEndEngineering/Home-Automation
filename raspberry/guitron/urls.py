@@ -4,6 +4,10 @@ from . import views
 
 app_name = 'guitron'
 urlpatterns = [
+
+    url(r'^component/$', views.index_component, name="component"),
+    url(r'^component/(?P<component_id>[0-9]+)/$', views.view_component, name='component'),
+    url(r'^dashboard/$', views.dashboard, name="dashboard"),
     url(r'^events/$', views.index_event, name="events"),
     url(r'^events/(?P<event_id>[0-9]+)/$', views.view_event, name='events'),
     url(r'^controllers/$', views.index_controller, name="controllers"),

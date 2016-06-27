@@ -8,6 +8,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 import uuid
+from PIL import Image
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
@@ -97,6 +98,15 @@ class Install(models.Model):
     def __str__(self):
         return str(self.name)
 
+class Action(models.Model):
+    component = models.ForeignKey(Component, models.SET_NULL, null=True)
+    value = models.CharField(max_length=10)
+    time = models.DateField(auto_now_add=True, db_index=True)
+    completed = models.BooleanField(False)
+
+    def __str__(self):
+        return str(self.id)
+
 class GadgetForm(forms.Form):
     subject = forms.CharField(max_length=100)
     message = forms.CharField(widget=forms.Textarea)
@@ -104,9 +114,3 @@ class GadgetForm(forms.Form):
 
     def __str__(self):
         return str(self.subject)
-
-class Image(models.Model):
-    name = models.CharField(max_length=128)
-    image = models.ImageField(null=True, blank=True,
-            width_field="width_field",
-            height_field="height_field")

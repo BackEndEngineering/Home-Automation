@@ -7,16 +7,21 @@
 
 
 
+
 {% if recent_events %}
-<h1 class='text-warning'>Events</h1>
+
+
 <ul style="list-style-type:none">
-    {% for event in recent_events %}
+  <h1 class='text-warning'>Events</h1>
+{% for event in recent_events %}
+
 
       </li>
         <li>
-          <a href="{% url 'guitron:events' event.id %}">
 
-          {{ event }}
+          <a href="{%  url 'guitron:events' event.id %}">
+
+          {{ event.time }}
         </a>
       </li>
     {% endfor %}
