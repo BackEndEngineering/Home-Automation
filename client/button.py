@@ -48,7 +48,6 @@ while True:
 
     else:
         print("Turn OFF")
-#    time.sleep(5)
 
     response = requests.get('http://guitron.herokuapp.com/' + 'guitron/get_action/', headers=headers)
     print(response.status_code)
@@ -59,36 +58,12 @@ while True:
         print(action)
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(13, GPIO.IN)
-#        lights = None
-#        current_state = GPIO.input(13)
-#        current_state = lights
 
         if action['value'] == 'ON':
             GPIO.output(13, GPIO.HIGH)
 
         if action['value'] == 'OFF':
             GPIO.output(13, GPIO.LOW)
-
-    #    if lights == GPIO.LOW:
-
-        #    GPIO.setmode(GPIO.BCM)
-    #        GPIO.setup(13, GPIO.OUT)
-    #        GPIO.output(13, GPIO.HIGH)
-    #        print('Lights are Turn ON')
-
-    #        action = {
-    ##                    'area': 'Game Room',
-    ##                    'pin': '17',
-    #                    'value': 'on'
-    #                    }
-
-    #    if lights == GPIO.HIGH:
-#            GPIO.setmode(GPIO.BCM)
-    #        GPIO.setup(13, GPIO.OUT)
-    #        GPIO.output(13, GPIO.LOW)
-    #        GPIO.cleanup()
-    #        print('Lights are Turn OFF')
-
 
         time.sleep( 5 )
         last_state = current_state
