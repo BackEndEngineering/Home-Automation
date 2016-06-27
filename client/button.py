@@ -60,6 +60,7 @@ while True:
         GPIO.setup(13, GPIO.IN)
 
         if action['value'] == 'ON':
+            GPIO.setup(13, GPIO.OUT)
             GPIO.output(13, GPIO.HIGH)
 
         if action['value'] == 'OFF':
