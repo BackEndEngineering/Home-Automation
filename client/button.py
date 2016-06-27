@@ -49,7 +49,7 @@ while True:
     response = requests.get('http://guitron.herokuapp.com/' + 'guitron/get_action/', headers=headers)
     print(response.status_code)
 
-    action = resp.json["action"]
+    action = response.json["action"]
 
     for action in actions:
         lights = input( 'Turn Lights ON or OFF? ')
@@ -75,6 +75,6 @@ while True:
             GPIO.cleanup()
             print('Lights are Turn OFF')
 
-        
+
         time.sleep( 5 )
         last_state = current_state
