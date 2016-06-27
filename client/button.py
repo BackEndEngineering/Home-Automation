@@ -7,6 +7,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(25, GPIO.IN)
 GPIO.setup(18, GPIO.OUT)
 
+
 URL = BASE_URL
 Token = TOKEN
 
@@ -54,14 +55,14 @@ while True:
     for action in actions:
         print(action)
         lights = None
-        current_state = GPIO.input(18)
+        current_state = GPIO.input(13)
         current_state = lights
 
         if lights == GPIO.LOW:
 
             GPIO.setmode(GPIO.BCM)
-            GPIO.setup(18, GPIO.OUT)
-            GPIO.output(18, GPIO.HIGH)
+            GPIO.setup(13, GPIO.OUT)
+            GPIO.output(13, GPIO.HIGH)
             print('Lights are Turn ON')
 
             action = {
@@ -74,8 +75,8 @@ while True:
 
         if lights == GPIO.HIGH:
             GPIO.setmode(GPIO.BCM)
-            GPIO.setup(18, GPIO.OUT)
-            GPIO.output(18, GPIO.LOW)
+            GPIO.setup(13, GPIO.OUT)
+            GPIO.output(13, GPIO.LOW)
             GPIO.cleanup()
             print('Lights are Turn OFF')
 
