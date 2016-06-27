@@ -15,7 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 def get_action(request):
-    action = Action.objects.filter(completed=False)
+    actions = Action.objects.filter(completed=False)
     for action in actions:
         action.completed=True
     return JsonResponse({'actions': actions})
