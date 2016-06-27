@@ -25,6 +25,8 @@ headers = {'Authorization': 'Token '+ TOKEN}
 last_state = None
 
 while True:
+    # handle_events()
+
     current_state = GPIO.input(25)
     if current_state == last_state:
         continue
@@ -46,7 +48,7 @@ while True:
 
     else:
         print("Turn OFF")
-    time.sleep(5)
+#    time.sleep(5)
 
     response = requests.get('http://guitron.herokuapp.com/' + 'guitron/get_action/', headers=headers)
     print(response.status_code)
@@ -57,31 +59,35 @@ while True:
         print(action)
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(13, GPIO.IN)
-        lights = None
-        current_state = GPIO.input(13)
-        current_state = lights
+#        lights = None
+#        current_state = GPIO.input(13)
+#        current_state = lights
 
-        if lights == GPIO.LOW:
+        if action['value'] == 'ON':
+            GPIO.output(13, GPIO.HIGH)
+
+        if action['value'] == 'OFF':
+            GPIO.output(13, GPIO.LOW)
+
+    #    if lights == GPIO.LOW:
 
         #    GPIO.setmode(GPIO.BCM)
-            GPIO.setup(13, GPIO.OUT)
-            GPIO.output(13, GPIO.HIGH)
-            print('Lights are Turn ON')
+    #        GPIO.setup(13, GPIO.OUT)
+    #        GPIO.output(13, GPIO.HIGH)
+    #        print('Lights are Turn ON')
 
-            action = {
-                        'name':'Lights',
-                        'area': 'Game Room',
-                        'kind': 'ceiling fan',
-                        'pin': '17',
-                        'value': 'on'
-                        }
+    #        action = {
+    ##                    'area': 'Game Room',
+    ##                    'pin': '17',
+    #                    'value': 'on'
+    #                    }
 
-        if lights == GPIO.HIGH:
+    #    if lights == GPIO.HIGH:
 #            GPIO.setmode(GPIO.BCM)
-            GPIO.setup(13, GPIO.OUT)
-            GPIO.output(13, GPIO.LOW)
-            GPIO.cleanup()
-            print('Lights are Turn OFF')
+    #        GPIO.setup(13, GPIO.OUT)
+    #        GPIO.output(13, GPIO.LOW)
+    #        GPIO.cleanup()
+    #        print('Lights are Turn OFF')
 
 
         time.sleep( 5 )
