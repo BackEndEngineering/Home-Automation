@@ -16,10 +16,9 @@ import json
 
 def get_action(request):
     actions = Action.objects.filter(completed=False)
-    context={'request': request}
     for action in actions:
         action.completed=True
-    serializer = ActionSerializer(actions, many=True)
+    serializer = ActionSerializer(actions, many=True, context={'request': request})
     return JsonResponse({'actions': serializer.data})
 
 def dashboard(request):
