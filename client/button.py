@@ -53,6 +53,9 @@ while True:
 
     for action in actions:
         print(action)
+        current_state = GPIO.input(25)
+        lights = current_state
+        
         if lights == "ON":
 
             GPIO.setmode(GPIO.BCM)
