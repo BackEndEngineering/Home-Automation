@@ -27,7 +27,7 @@ last_state = None
 
 
 def handle_events():
-
+    global last_state
     current_state = GPIO.input(25)
     if current_state == last_state:
         return
