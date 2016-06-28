@@ -51,10 +51,11 @@ def dashboard(request):
 
 
 def index(request):
-    recent_gadgets = Gadget.objects.all()
-    context = {'recent_gadgets': recent_gadgets}
-    return render(request, 'guitron/guitron_index.html', context)
-
+    recent_controllers = Controller.objects.all()
+    recent_events = Event.objects.order_by('-time')[0:5]
+    context = {'recent_controllers': recent_controllers, 'recent_events': recent_events}
+    return render(request, 'guitron/dashboard.html', context)
+    
 def view_guitron(request, guitron_id):
     gadget = get_object_or_404(Gadget, id=guitron_id)
     context = { 'gadget': gadget }
