@@ -100,7 +100,7 @@ def view_controller(request, controller_id):
 
 
 def index_event(request):
-    recent_events = Event.objects.all()
+    recent_events = Event.objects.order_by('-time')[0:10]
     context = {'recent_events': recent_events}
     return render(request, 'guitron/event_index.html', context)
 
