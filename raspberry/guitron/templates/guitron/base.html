@@ -21,6 +21,14 @@
 </head>
 
 <body>
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -38,7 +46,7 @@
         <ul class="nav navbar-nav">
           <li class="active"><a href="{% url 'guitron:dashboard' %}">DashBoard</a></li>
 
-          <li><a href="{% url 'guitron:index' %}">Lights</a></li>
+          <li><a href="{% url 'guitron:light' %}">Lights</a></li>
           <li><a href="">GPIO</a></li>
           <li><a href="{%  url 'guitron:events' %}">Events</a></li>
           <li><a href="">Profile</a></li>

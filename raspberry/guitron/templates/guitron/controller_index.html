@@ -3,29 +3,69 @@
 {% block title %}Cool Title for My App{% endblock %}
 
 {% block content %}
+<h1 class='text-primary'>GuiTron DashBoard</h1>
+<ul style="list-style-type:none">
+  <div class="row">
 
+<div class="col-md-4">
+<div class="row">
+<div class="col-md-4">
+        <form>
+        <input style="width: 300px; padding: 20px; box-shaddow: 6px 6px 5px; #007399; -webkit-box-shadow: 6px 6px 5px #007399; -moz-box-shadow: 6px 6px 5px #007399; font-weight: bold; background: #0000ff; color: #000000; cursor: pointer; border-radius: 10px; border: 1px solid #D9D9D9; font-size: 150%;" type="button" value="Controllers" onclick="window.location.href='{% url 'guitron:controllers' %}'" />
+        </form>
+
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+        <form>
+        <input style="width: 300px; padding: 20px; box-shaddow: 6px 6px 5px; #007399; -webkit-box-shadow: 6px 6px 5px #007399; -moz-box-shadow: 6px 6px 5px #007399; font-weight: bold; background: #0000ff; color: #000000; cursor: pointer; border-radius: 10px; border: 1px solid #D9D9D9; font-size: 150%;" type="button" value="Events" onclick="window.location.href='{% url 'guitron:events' %}'" />
+        </form>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+        <form>
+        <input style="width: 300px; padding: 20px; box-shaddow: 6px 6px 5px; #007399; -webkit-box-shadow: 6px 6px 5px #007399; -moz-box-shadow: 6px 6px 5px #007399; font-weight: bold; background: #0000ff; color: #000000; cursor: pointer; border-radius: 10px; border: 1px solid #D9D9D9; font-size: 150%;" type="button" value="Lights" onclick="window.location.href='{% url 'guitron:light' %}'" />
+        </form>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+        <form>
+        <input style="width: 300px; padding: 20px; box-shaddow: 6px 6px 5px; #007399; -webkit-box-shadow: 6px 6px 5px #007399; -moz-box-shadow: 6px 6px 5px #007399; font-weight: bold; background: #0000ff; color: #000000; cursor: pointer; border-radius: 10px; border: 1px solid #D9D9D9; font-size: 150%;" type="button" value="Feed The Dog" onclick="window.location.href='{% url 'guitron:events' %}'" />
+        </form>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+        <form>
+        <input style="width: 300px; padding: 20px; box-shaddow: 6px 6px 5px; #007399; -webkit-box-shadow: 6px 6px 5px #007399; -moz-box-shadow: 6px 6px 5px #007399; font-weight: bold; background: #0000ff; color: #000000; cursor: pointer; border-radius: 10px; border: 1px solid #D9D9D9; font-size: 150%;" type="button" value="DashBoard" onclick="window.location.href='{% url 'guitron:dashboard' %}'" />
+        </form>
+</div>
+</div>
+</div>
 
 
 
 {% if recent_controllers %}
 
-<h1 class='text-warning'>Controllers</h1>
+
+
 <ul style="list-style-type:none">
-    {% for controller in recent_controllers %}
-
-          </li>
-          <ul class="list-group">
-            <li class="list-group-item">
-
-              <a href="{% url 'guitron:controllers' controller.id  %}">
-              {{ controller }}</a>
-            </li>
-
-            
+  <h1 class='text-warning'>Controllers</h1>
+{% for controller in recent_controllers %}
 
 
+      </li>
+        <li>
+          <button type="button" class="btn btn-default">  <a href="{% url 'guitron:controllers' controller.id  %}">
+
+          {{ controller }}</button>
 
 
-        {% endfor %}
+      </li>
+    {% endfor %}
+    </ul>
 {% endif %}
 {% endblock %}

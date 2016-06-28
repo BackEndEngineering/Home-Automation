@@ -2,30 +2,98 @@
 {% block title %}guitron{% endblock %}
 {% block content %}
 {% load staticfiles %}
-<article>
+
+<h1 class='text-primary'>GuiTron DashBoard</h1>
+<ul style="list-style-type:none">
+  <div class="row">
+
+<div class="col-md-4">
+<div class="row">
+<div class="col-md-4">
+        <form>
+        <input style="width: 300px; padding: 20px; box-shaddow: 6px 6px 5px; #007399; -webkit-box-shadow: 6px 6px 5px #007399; -moz-box-shadow: 6px 6px 5px #007399; font-weight: bold; background: #0000ff; color: #000000; cursor: pointer; border-radius: 10px; border: 1px solid #D9D9D9; font-size: 150%;" type="button" value="Controllers" onclick="window.location.href='{% url 'guitron:controllers' %}'" />
+        </form>
+
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+        <form>
+        <input style="width: 300px; padding: 20px; box-shaddow: 6px 6px 5px; #007399; -webkit-box-shadow: 6px 6px 5px #007399; -moz-box-shadow: 6px 6px 5px #007399; font-weight: bold; background: #0000ff; color: #000000; cursor: pointer; border-radius: 10px; border: 1px solid #D9D9D9; font-size: 150%;" type="button" value="Events" onclick="window.location.href='{% url 'guitron:events' %}'" />
+        </form>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+        <form>
+        <input style="width: 300px; padding: 20px; box-shaddow: 6px 6px 5px; #007399; -webkit-box-shadow: 6px 6px 5px #007399; -moz-box-shadow: 6px 6px 5px #007399; font-weight: bold; background: #0000ff; color: #000000; cursor: pointer; border-radius: 10px; border: 1px solid #D9D9D9; font-size: 150%;" type="button" value="Lights" onclick="window.location.href='{% url 'guitron:light' %}'" />
+        </form>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+        <form>
+        <input style="width: 300px; padding: 20px; box-shaddow: 6px 6px 5px; #007399; -webkit-box-shadow: 6px 6px 5px #007399; -moz-box-shadow: 6px 6px 5px #007399; font-weight: bold; background: #0000ff; color: #000000; cursor: pointer; border-radius: 10px; border: 1px solid #D9D9D9; font-size: 150%;" type="button" value="Feed The Dog" onclick="window.location.href='{% url 'guitron:events' %}'" />
+        </form>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+        <form>
+        <input style="width: 300px; padding: 20px; box-shaddow: 6px 6px 5px; #007399; -webkit-box-shadow: 6px 6px 5px #007399; -moz-box-shadow: 6px 6px 5px #007399; font-weight: bold; background: #0000ff; color: #000000; cursor: pointer; border-radius: 10px; border: 1px solid #D9D9D9; font-size: 150%;" type="button" value="DashBoard" onclick="window.location.href='{% url 'guitron:dashboard' %}'" />
+        </form>
+</div>
+</div>
+</div>
+
+  <div class="col-md-8">
+      <div class="panel .col-xs-*">
+      <div class="panel-heading">
+        <h3 class='text-success'>RASPBERRY PI Events</h3>
 
 
-  <ul class="list-group">
 
-    <h3 class='text-success'>RASPBERRY PI</h3>
-    <li class="list-group-item"><h4 class="list-group-item-heading">Name</h4>{{ event.component.name }}</li>
-    <li class="list-group-item"><h4 class="list-group-item-heading">Area</h4>{{ event.component.area }}</li>
-    <li class="list-group-item"><h4 class="list-group-item-heading">Type</h4>{{ event.component.kind }}</li>
-    <li class="list-group-item"><h4 class="list-group-item-heading">Raspberry</h4>{{ event.component.controller }}</li>
-    <li class="list-group-item"><h4 class="list-group-item-heading">Name</h4>{{ event.component.controller.name }}</li>
-    <li class="list-group-item"><h4 class="list-group-item-heading">Location</h4>{{ event.component.controller.location }}</li>
-    <li class="list-group-item"><h4 class="list-group-item-heading">User</h4>{{ event.component.controller.user }}</li>
-    <li class="list-group-item"><h4 class="list-group-item-heading">Uuid</h4>{{ event.component.controller.uuid }}</li>
-    <li class="list-group-item"><h4 class="list-group-item-heading">Pin Number</h4>{{ event.component.pin }}</li>
-    <li class="list-group-item"><h4 class="list-group-item-heading">Date/Time</h4>{{ event.time}}</li>
-    <li class="list-group-item"><h4 class="list-group-item-heading">Switch ON/OFF</h4>{{ event.value}}</li>
+        <div class="row">
+          <div class="text-success col-xs-4 col-xs-offset-4"><h4 class="list-group-item-heading">Name</h4>{{ event.component.name }}</div>
+        </div>
 
-  </ul>
+        <div class="row">
+          <div class="text-success col-xs-4 col-xs-offset-4"><h4 class="list-group-item-heading">Area</h4>{{ event.component.area }}</div>
+        </div>
 
-  
+        <div class="row">
+          <div class="col-md-4 col-xs-offset-4"><h4 class="list-group-item-heading">Type</h4>{{ event.component.kind }}</div>
+        </div>
+        <div class="row">
+          <div class="text-success col-xs-4 col-xs-offset-4"><h4 class="list-group-item-heading">Raspberry</h4>{{ event.component.controller }}</div>
+        </div>
 
-</article>
-<p><a href="{% url 'guitron:events' %}" class="btn btn-primary btn-sm active" role="button">Back to List</a></p>
+        <div class="row">
+          <div class="text-success col-xs-4 col-xs-offset-4"><h4 class="list-group-item-heading">Name</h4>{{ event.component.controller.name }}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 col-xs-offset-4"><h4 class="list-group-item-heading">Location</h4>{{ event.component.controller.location }}</div>
+        </div>
+        <div class="row">
+          <div class="text-success col-xs-4 col-xs-offset-4"><h4 class="list-group-item-heading">User</h4>{{ event.component.controller.user }}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 col-xs-offset-4"><h4 class="list-group-item-heading">Uuid</h4>{{ event.component.controller.uuid }}</div>
+        </div>
+        <div class="row">
+          <div class="text-success col-xs-4 col-xs-offset-4"><h4 class="list-group-item-heading">Pin Number</h4>{{ event.component.pin }}</div>
+        </div>
+
+        <div class="row">
+          <div class="text-success col-xs-4 col-xs-offset-4"><h4 class="list-group-item-heading">Date/Time</h4>{{ event.time}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 col-xs-offset-4"><h4 class="list-group-item-heading">Switch ON/OFF</h4>{{ event.value}}</div>
+        </div>
+
 {% if 'guitron' in perms %}
 {% endif %}
 {% endblock %}
