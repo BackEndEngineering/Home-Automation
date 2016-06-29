@@ -2,7 +2,7 @@ from .settings import *
 import dj_database_url
 
 #DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'guitron.herokuapp.com', 'gui-tron.com']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'guitron.herokuapp.com', 'gui-tron.com', 'www.gui-tron.com']
 DEBUG = False
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
