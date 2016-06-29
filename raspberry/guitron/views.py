@@ -1,18 +1,19 @@
 from django.http import HttpResponse
 from .models import Gadget, Controller, Event, Component, Action
-from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
 from .utils import calculate_age
-from .forms import GadgetForm, ActionForm
+from .forms import GadgetForm, ActionForm, CreateUserForm
 from django.http import HttpResponseRedirect
-from .forms import GadgetForm
 from rest_framework import viewsets
 from django.contrib.auth.models import User, Group
 from guitron.api import UserSerializer, GroupSerializer, ControllerSerializer, EventSerializer, ComponentSerializer, ActionSerializer
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+
 
 def get_action(request):
     actions = Action.objects.filter(completed=False)
@@ -42,7 +43,7 @@ def action_form(request):
     return render(request, 'guitron/lights.html', context)
 
 
-
+@login_required
 def dashboard(request):
     recent_controllers = Controller.objects.all()
     recent_events = Event.objects.order_by('-time')[0:5]
@@ -55,7 +56,7 @@ def index(request):
     recent_events = Event.objects.order_by('-time')[0:5]
     context = {'recent_controllers': recent_controllers, 'recent_events': recent_events}
     return render(request, 'guitron/dashboard.html', context)
-    
+
 def view_guitron(request, guitron_id):
     gadget = get_object_or_404(Gadget, id=guitron_id)
     context = { 'gadget': gadget }
@@ -127,67 +128,39 @@ def view_image(request, image_id):
     return render(request, 'guitron/image_details.html', context)
 
 class ActionViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
     queryset = Action.objects.all()
     serializer_class = ActionSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
 class ControllerViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
     queryset = Controller.objects.all().order_by('-date_joined')
     serializer_class = ControllerSerializer
 
 class EventViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
     queryset = Event.objects.all().order_by('-date_joined')
     serializer_class = EventSerializer
 
 class ComponentViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
     queryset = Component.objects.all().order_by('-date_joined')
     serializer_class = ComponentSerializer
 
-
 class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
 class ControllerViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
     queryset = Controller.objects.all()
     serializer_class = ControllerSerializer
 
 class EventViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
 class ComponentViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
     queryset = Component.objects.all()
     serializer_class = ComponentSerializer
 
@@ -223,3 +196,15 @@ def create_event(request):
         )
 
     return JsonResponse({'create_event': event.id})
+
+def create_user(request):
+    if request.method == 'POST':
+        user_form = CreateUserForm(request.POST)
+        if user_form.is_valid():
+            user = user_form.save()
+            return HttpResponseRedirect('/login/')
+    else:
+        user_form = CreateUserForm()
+
+    return render(request, 'guitron/create_user.html',
+                 {'user_form': user_form})

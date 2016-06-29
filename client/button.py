@@ -9,8 +9,6 @@ GPIO.setup(25, GPIO.IN)
 GPIO.setup(18, GPIO.OUT)
 GPIO.setup(18, GPIO.HIGH)
 
-
-
 URL = BASE_URL
 Token = TOKEN
 

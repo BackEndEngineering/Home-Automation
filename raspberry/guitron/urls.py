@@ -4,6 +4,7 @@ from . import views
 
 app_name = 'guitron'
 urlpatterns = [
+    url(r'^create-account/$', views.create_user, name="create-account" ),
     url(r'^light/$', views.action_form, name='light'),
     url(r'^get_action/$', views.get_action, name='get_action'),
     url(r'^component/$', views.index_component, name="component"),

@@ -1,19 +1,17 @@
 body {
   padding-top: 50px;
-
-
-
-}
-.starter-template {
-  padding: 20px 15px 450px;
-  text-align: center;
-  background-repeat: round;
+  background-repeat: round repeat-y;
   background-image: url(http://orig08.deviantart.net/aa57/f/2013/203/4/6/tron_loop_by_heisenberg1234-d6ekuxs.gif);
+/*  min-height: 800px;*/
+  background-size: cover;
+
+
 }
 
-body {
-     background:#c33;
- }
+.starter-template {
+  padding: 20px 15px 25px;
+  text-align: center;
+}
 
  .panel-transparent {
      background: none;
@@ -34,12 +32,6 @@ body {
      background-color: transparent;
      border: 1px #222;
  }
- body {
-  background: black;
-}
-body {
-  background: black;
-}
 .button {
   background-color: #004A7F;
   -webkit-border-radius: 10px;
