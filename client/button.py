@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 from config import TOKEN, BASE_URL
 import requests
 import time
+import smtplib
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(25, GPIO.IN)
@@ -24,7 +25,14 @@ headers = {'Authorization': 'Token '+ TOKEN}
 
 last_state = None
 
+def text():
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login("myguitron@gmail.com", "Myguitron10")
 
+    msg = "YOUR MESSAGE!"
+    server.sendmail("MyGuiTron@gmail.com", "2108874112@messaging.sprintpcs.com", msg)
+    server.quit()
 
 def handle_events():
     global last_state
@@ -34,7 +42,7 @@ def handle_events():
 
     if current_state == GPIO.LOW:
         print("Turn ON")
-
+        text()
         event_data = {
                         'uuid': uid,
                         'name':'Master Bedroom ',
