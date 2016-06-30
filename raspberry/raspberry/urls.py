@@ -32,7 +32,7 @@ router.register(r'Component', views.ComponentViewSet)
 
 urlpatterns = [
      url(r'^', include('django.contrib.auth.urls')),
-     url(r'^$', views.index, name="index"),
+     url(r'^$', views.dashboard, name="dashboard"),
      url(r'^guitron/', include('guitron.urls')),
      url(r'^admin/', admin.site.urls),
      url(r'^api/', include(router.urls)),

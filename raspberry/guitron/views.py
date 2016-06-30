@@ -22,7 +22,8 @@ def get_action(request):
         action.save()
     serializer = ActionSerializer(actions, many=True, context={'request': request})
     return JsonResponse({'actions': serializer.data})
-
+    
+@login_required
 def action_form(request):
     if request.method == 'POST':
         component = Component.objects.get(id=1)
@@ -90,32 +91,37 @@ def view_image(request, image_id):
     context = { 'image': image }
     return render(request, 'guitron/image_details.html', context)
 
+@login_required
 def index_controller(request):
     recent_controllers = Controller.objects.all()
     context = {'recent_controllers': recent_controllers}
     return render(request, 'guitron/controller_index.html', context)
 
+@login_required
 def view_controller(request, controller_id):
     controller = get_object_or_404(Controller, id=controller_id)
     context = { 'controller': controller }
     return render(request, 'guitron/controller_details.html', context)
 
-
+@login_required
 def index_event(request):
     recent_events = Event.objects.order_by('-time')[0:10]
     context = {'recent_events': recent_events}
     return render(request, 'guitron/event_index.html', context)
 
+@login_required
 def view_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     context = { 'event': event}
     return render(request, 'guitron/event_details.html', context)
 
+@login_required
 def index_component(request):
     recent_components = Component.objects.all()
     context = {'recent_components': recent_components}
     return render(request, 'guitron/component_index.html', context)
 
+@login_required
 def view_component(request, component_id):
     component = get_object_or_404(Component, id=component_id)
     context = { 'component': component }
