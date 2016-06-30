@@ -59,15 +59,15 @@
       {% for event in recent_events %}
 
       <div class="row">
-        <div class="text-success col-xs-4 col-xs-offset-4">{{ event.time }}</div>
+        <div class="text-success col-sm-4 col-sm-offset-4">{{ event.time }}</div>
       </div>
 
       <div class="row">
-        <div class="text-success col-xs-4 col-xs-offset-4">Switch ON/OFF is now {{ event.value}}</div>
+        <div class="text-success col-sm-4 col-sm-offset-4">Switch ON/OFF is now {{ event.value}}</div>
       </div>
 
       <div class="row">
-        <div class="col-md-4 col-xs-offset-4">Location is at {{ event.component.controller.location }}</div>
+        <div class="col-sm-4 col-sm-offset-4">Location is at {{ event.component.controller.location }}</div>
       </div>
 
       {% endfor %}
@@ -79,10 +79,8 @@
 
 
 <a href="http://www.accuweather.com/en/us/san-antonio-tx/78205/weather-forecast/351198" class="aw-widget-legal">
-<!--
-By accessing and/or using this code snippet, you agree to AccuWeather’s terms and conditions (in English) which can be found at http://www.accuweather.com/en/free-weather-widgets/terms and AccuWeather’s Privacy Statement (in English) which can be found at http://www.accuweather.com/en/privacy.
--->
-</a><div id="awcc1467142132778" class="aw-widget-current"  data-locationkey="" data-unit="f" data-language="en-us" data-useip="true" data-uid="awcc1467142132778"></div><script type="text/javascript" src="http://oap.accuweather.com/launch.js"></script>  {% endif %}
+
+</a><div id="awcc1467319745006" class="aw-widget-current"  data-locationkey="351198" data-unit="f" data-language="en-us" data-useip="false" data-uid="awcc1467319745006"></div><script type="text/javascript" src="http://oap.accuweather.com/launch.js"></script>  {% endif %}
 </div>
   {% endfor %}
 {% endif %}
