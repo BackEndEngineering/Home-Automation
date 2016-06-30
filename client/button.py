@@ -29,7 +29,7 @@ def text():
     server.starttls()
     server.login("myguitron@gmail.com", "Myguitron10")
 
-    msg = "YOUR MESSAGE!"
+    msg = "Welcome To GuiTron!"
     server.sendmail("MyGuiTron@gmail.com", "2108874112@messaging.sprintpcs.com", msg)
     server.quit()
 
